@@ -10,6 +10,10 @@ app.get("/",function(req,res)
 	{
 		res.status(300).sendFile(path.join(__dirname,"test.html")); 
 	});
+app.get("/fb",function(req,res)
+	{
+		res.status(300).sendFile(path.join(__dirname,"fb.html")); 
+	});
 
 io.on('connection', function(socket){
 //------------------------------------------------------------------------
