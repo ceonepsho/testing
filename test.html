@@ -24,7 +24,6 @@
   </div>
   </center>
     <script>
-      var pass=false;
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
@@ -34,6 +33,7 @@
         //alert('Family Name: ' + profile.getFamilyName());
         //alert("Image URL: " + profile.getImageUrl());
         alert("Email: " + profile.getEmail());
+        document.getElementById("logout").style.display="block";
         pass=true;
         // The ID token you need to pass to your backend:
         //var id_token = googleUser.getAuthResponse().id_token;
@@ -41,10 +41,6 @@
       };
     </script>
 <script>
-  if(pass)
-  {
-     document.getElementById("logout").style.display="block";
-  }
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
