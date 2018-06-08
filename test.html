@@ -29,6 +29,8 @@
 <div id="fb-root"></div>
 
   </center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -47,17 +49,18 @@
       };
     </script>
 <script>
+  var socket = io().connect('https://cqtesting.herokuapp.com');
   function checkLoginState() {
   FB.getLoginStatus(function(response) {
      alert(response.authResponse.userID);
-    //statusChangeCallback(response);
+    socket.emit('facebook', response);
   });
 }
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-    document.getElementById("logout").style.display="none";
-      //console.log('User signed out.');
+  function signOut()
+    {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+      document.getElementById("logout").style.display="none";
     });
   }
 </script>
