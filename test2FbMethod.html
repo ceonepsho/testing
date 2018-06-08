@@ -23,10 +23,12 @@
     <a onclick="signOut();" class="btn btn-danger" id="logout" style="width: 40%">Sign out</a>
   </div>
   <br>
-  <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
-
 
 <div id="fb-root"></div>
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
 
   </center>
     <script>
@@ -49,14 +51,14 @@
 <script>
   function checkLoginState() {
   FB.getLoginStatus(function(response) {
-     alert(response.authResponse.userID);
+     alert(response.status);
     //statusChangeCallback(response);
   });
 }
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-    document.getElementById("logout").style.display="none";
+      document.getElementById("logout").style.display="none";
       //console.log('User signed out.');
     });
   }
