@@ -61,8 +61,22 @@
   function checkLoginState() {
   FB.getLoginStatus(function(response)
   {
+    if (response.status=="connected")
+    {
+    FB.api('/me', { locale: 'tr_TR', fields: 'email' },
+          function(response) {
+            alert(response.me);
+            alert(response.email);
+            document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
+          }
+      );
      document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
     socket.emit('facebook', response);
+  }
+  else
+  {
+    alert("Something Welnt wrong")
+  }
   });
 }
 </script>
