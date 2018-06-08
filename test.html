@@ -22,6 +22,17 @@
     <br>
     <a onclick="signOut();" class="btn btn-danger" id="logout" style="width: 40%">Sign out</a>
   </div>
+  <br>
+  <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
+
+<div id="fb-root"></div>
+
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
   </center>
     <script>
       function onSignIn(googleUser) {
@@ -41,6 +52,12 @@
       };
     </script>
 <script>
+  function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+     alert(response.status);
+    //statusChangeCallback(response);
+  });
+}
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
@@ -49,5 +66,13 @@
     });
   }
 </script>
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0&appId=401956300319799&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
   </body>
 </html>
