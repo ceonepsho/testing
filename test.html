@@ -64,8 +64,10 @@
   function signOut()
     {
       var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-      document.getElementById("logout").style.display="none";
+      auth2.signOut().then(function ()
+      {
+        document.getElementById("profilepic").src="";
+        document.getElementById("logout").style.display="none";
     });
   }
 </script>
