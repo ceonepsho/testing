@@ -27,83 +27,56 @@
   <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
 
 
-<button onclick="getCurrentUserInfo()">Test</button>
+
 <div id="fb-root"></div>
 
   </center>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
     <script>
       document.getElementById("profilepic").src="";
       function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
+        //alert("ID: " + profile.getId()); // Don't send this directly to your server!
+        //alert('Full Name: ' + profile.getName());
+        //alert('Given Name: ' + profile.getGivenName());
+        //alert('Family Name: ' + profile.getFamilyName());
+        //alert("Image URL: " + profile.getImageUrl());
         alert("Email: " + profile.getEmail());
         document.getElementById("profilepic").src=profile.getImageUrl();
         document.getElementById("logout").style.display="block";
         pass=true;
+        // The ID token you need to pass to your backend:
+        //var id_token = googleUser.getAuthResponse().id_token;
+        //alert("ID Token: " + id_token);
       };
     </script>
-
-<script>
-  $(function() {
-    FB.init({
-      appId  : '401956300319799',
-      status : true, // check login status
-      cookie : true, // enable cookies to allow the server to access the session
-      xfbml  : true  // parse XFBML
-    });
-
-    FB.getLoginStatus(function(response) {
-      if (response.status == 'connected') {
-        getCurrentUserInfo(response)
-      } else {
-        FB.login(function(response) {
-          if (response.authResponse){
-            getCurrentUserInfo(response)
-          } else {
-            alert('Auth cancelled.')
-          }
-        }, { scope: 'email' });
-      }
-    });
-
-    function getCurrentUserInfo() {
-      FB.api('/me', function(userInfo) {
-        alert(userInfo.name + ': ' + userInfo.email);
-      });
-    }
-  });
-</script>
-
 <script>
   var socket = io().connect('https://cqtesting.herokuapp.com');
-  //function checkLoginState() {
-  /*FB.getLoginStatus(function(response) {
+  function checkLoginState() {
+  FB.getLoginStatus(function(response) {
      //alert(response.authResponse.userID);
-      document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
-      socket.emit('facebook', response);
+     document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
+    socket.emit('facebook', response);
   });
-}*/
-
-
+}
   function signOut()
     {
       var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function ()
-      {
+      auth2.signOut().then(function () {
         document.getElementById("profilepic").src="";
-        document.getElementById("logout").style.display="none";
+      document.getElementById("logout").style.display="none";
     });
   }
 </script>
 
-<script>/*(function(d, s, id) {
+<script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0&appId=401956300319799&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));*/</script>
+}(document, 'script', 'facebook-jssdk'));</script>
   </body>
 </html>
