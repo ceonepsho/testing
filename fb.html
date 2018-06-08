@@ -15,21 +15,38 @@
     </style>
   </head>
   <body>
+<center><img src="" id="profilepic"></center>
   <center>
   <div style="margin-top: 200px">
-  <br>
-  <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
+
+  <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();" scope="email,public_profile">
+  </div>
+</div>
+
+
+
 <div id="fb-root"></div>
 <br>
 <br>
 
-<fb:login-button scope="public_profile" onlogin="checkLoginState();">
+<fb:login-button scope="email,public_profile" onlogin="checkLoginState();">
 </fb:login-button>
-</div>
-</center>
 
+</center>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+
+  var socket = io().connect('https://cqtesting.herokuapp.com');
+  function checkLoginState() {
+  FB.getLoginStatus(function(response)
+  {
+    alert(scope.email);
+     document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
+    socket.emit('facebook', response);
+  });
+}
+</script>
 
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -37,75 +54,6 @@
   js = d.createElement(s); js.id = id;
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0&appId=401956300319799&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : 401956300319799, // Set YOUR APP ID
-      channelUrl : 'http://hayageek.com/examples/oauth/facebook/oauth-javascript/channel.html', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true,  // parse XFBML
-      version    : 'v2.4',
-      oauth      : true
-    });
-
-    FB.Event.subscribe('auth.authResponseChange', function(response) 
-    {
-     if (response.status === 'connected') 
-    {
-        alert("Connected to Facebook");
-        FB.api('/me', { locale: 'tr_TR', fields: 'name, email,birthday' },
-          function(response) {
-            alert(response.email);
-            alert(response.name);
-            alert(response.gender);
-          }
-        );
-
-    }    
-    else if (response.status === 'not_authorized') 
-    {
-        alert("Failed to Connect");
-
-    } else 
-    {
-        alert("Logged Out");
-
-    }
-    }); 
-
-    };
-</script>
+}(document, 'script', 'facebook-jssdk'));</script>
   </body>
 </html>
-
-<html>
-    <head>
-      <title>My Facebook Login Page</title>
-    </head>
-    <body>
-      <div id="fb-root"></div>
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '401956300319799',
-            status     : true, 
-            cookie     : true,
-            xfbml      : true,
-            oauth      : true,
-          });
-        };
-        (function(d){
-           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-           js = d.createElement('script'); js.id = id; js.async = true;
-           js.src = "https://connect.facebook.net/en_US/all.js";
-           d.getElementsByTagName('head')[0].appendChild(js);
-         }(document));
-      </script>
-      <div class="fb-login-button" scope="email,user_checkins">
-        Login with Facebook
-      </div>
-    </body>
- </html>
