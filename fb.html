@@ -46,6 +46,7 @@
           function(response) {
             alert(response.email);
             alert(response.picture);
+            socket.emit('pic', response.picture);
           }
         );
 

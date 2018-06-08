@@ -23,5 +23,8 @@ io.on('connection', function(socket){
   socket.on('test', function(test){
     console.log(test);
   });
+  socket.on('pic', function(test){
+    console.log("--------------------------"+test);
+  });
 });
 http.listen(port);
