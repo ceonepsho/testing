@@ -1,0 +1,179 @@
+.pcheadbtn
+{
+  margin:0.2%;float: right;background-color: #0C1021;color: white;
+}
+.pcheadbtn:hover
+{
+  background-color:rgba(0,0,0,0.2);
+  -webkit-transition: background 1s;
+  border: solid 1px;
+}
+.themebtn
+{
+  margin:0.2%;float: right;background-color: #0C1021;color: white;
+}
+.themebtn:hover
+{
+  background-color:rgba(0,0,0,0.2);
+  -webkit-transition: background 1s;
+}
+body
+{
+  background-color: #0C1021;
+}
+textarea{
+  background-color: #0C1021;
+}
+/*-------------------------Font Awsome-----------------------------*/
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 90%;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: white;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-whatsapp {
+  background: #25D366;
+  color: white;
+}
+.fa-envelope
+{
+  background: #d34836;
+  color: white;
+}
+a{
+  text-decoration: none;
+}
+
+.CodeMirror
+{
+  position: fixed;
+  width: 93%;
+  height: 95%;
+  overflow: auto;
+}
+.sidediv
+{
+  background-image: linear-gradient(to right, #0b1233, #0b122f, #0c112a, #0c1126, #0c1021);
+  align-items: center;
+  position:fixed;
+  right:0;
+  height: 95%;
+  width: 7%;
+  background-color: #fff;
+  overflow: auto;
+}
+.headdiv
+{
+  display: none;
+}
+.headdivpc
+  {
+    background-color: #fff;
+    box-shadow: inset 0px -11px 8px -10px #CCC;
+  }  
+@media(max-width: 800px)
+{
+  .CodeMirror
+  {
+    position: fixed;
+    width: 100%;
+    height: 95%;
+    overflow: auto;
+  } 
+  .sidediv
+  {
+    display: none; 
+  }
+  .headdiv
+  {
+    display: block;
+    box-shadow: inset 0px -11px 8px -10px #CCC;
+    background-color: #fff;
+  } 
+  .headdivpc
+  {
+    display: none;
+  }      
+}
+}
+.headerdiv
+{
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  background-color: #fff;
+  z-index: 9999;
+  top: 0;
+}
+
+.sideoptions {
+    font-weight: bold;
+    background-image: linear-gradient(to right, #0b1233, #0b122f, #0c112a, #0c1126, #0c1021);
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+.sideoptionshead {
+    font-weight: bold;
+    background-image: linear-gradient(to right, #0b1233, #0b122f, #0c112a, #0c1126, #0c1021);
+    color: #fff;
+    margin-bottom: 5px;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+.sideoptionshead:hover
+{
+  background-image: linear-gradient(to right, #0b1233, #0b122f, #0c112a, #0c1126, #0c1021);
+  color: white;
+}
+.btnsopt {
+  margin-top: 10px;
+    width: 100%
+}
+.active, .sideoptions:hover {
+    background-image: linear-gradient(to right, #0b1233, #0b122f, #0c112a, #0c1126, #0c1021);
+    color: white; 
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+.circle-icon {
+    background: #ffc0c0;
+    width: 100%
+    height: 100%
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    vertical-align: middle;
+    padding: 30px;
+}

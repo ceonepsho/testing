@@ -1,0 +1,14 @@
+.textarea{
+  width: 100%;
+  border: 0;
+  margin-top: 5%;
+  background-color: #040014;
+  color: white;font-size: 15px;
+  padding: 20px;}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

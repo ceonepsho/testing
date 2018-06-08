@@ -1,0 +1,102 @@
+<html lang="en">
+  <head>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="google-signin-client_id" content="853574560806-ipsfv26fdrkp8qh1tkuaogaevgf1q6i8.apps.googleusercontent.com">
+  <link href="main/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+  <link href="main/css/login.css" type="text/css" rel="stylesheet" />
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <style type="text/css">
+    #logout
+    {
+      display: none;
+    }
+  </style>
+</head>
+<body style="background-color: #0C1021">
+<br>
+    <div class="container">
+            <center>
+                <div class="col-md-6 StartAnimation one">
+                    <div style="background: rgba(0,0,0,0.4);margin-top: 10%;border: 1px solid white;">
+                        <br>
+                        <h1 style="font-size: 30">Login</h1>
+                        <form action="/" method="post">
+                            <input type="text" name="username" class="input" placeholder="User Name" required="required" style="border-color: white" />
+                            <input type="password" name="password" class="input" placeholder="password" required="required" style="border-color: white" />
+                            <center>
+                                <input type="submit" name="submit" class="inputbtn unselectable StartAnimation two" value="Go"> </center>
+                        </form>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-md-6 StartAnimation two">
+                    <div style="background: rgba(0,0,0,0.4);margin-top: 10%;border: 1px solid white;">
+                        <br>
+                        <h1>Login With</h1>
+                            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width: 400px;height: 60px"></div>
+                            <br>
+                            <br>
+                            <a onclick="signOut();" class="btn btn-danger" id="logout" style="width: 40%">Sign out</a> 
+                        <br>
+                         <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();" scope="email,public_profile">
+                        <br>
+                             
+                        <br>
+                    </div>
+                </div>
+            </center>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+ <script>
+      document.getElementById("profilepic").src="";
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        alert("Email: " + profile.getEmail());
+        document.getElementById("profilepic").src=profile.getImageUrl();
+        document.getElementById("logout").style.display="block";
+        pass=true;
+      };
+    function signOut()
+    {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        document.getElementById("profilepic").src="";
+      document.getElementById("logout").style.display="none";
+    });
+  }
+</script>
+<script>
+  var socket = io().connect('https://cqtesting.herokuapp.com');
+  function checkLoginState() {
+  FB.getLoginStatus(function(response)
+  {
+
+    FB.api('/me', { locale: 'tr_TR', fields: 'email' },
+          function(response) {
+            alert(response.me);
+            alert(response.email);
+            document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
+          }
+        );
+     document.getElementById("profilepic").src="https://graph.facebook.com/"+response.authResponse.userID+"/picture";
+    socket.emit('facebook', response);
+  });
+}
+</script>
+<script>
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0&appId=401956300319799&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+  </body>
+</html>
