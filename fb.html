@@ -42,7 +42,7 @@
   FB.getLoginStatus(function(response)
   {
 
-    FB.api('/me', { locale: 'tr_TR', fields: 'email' },
+    FB.api('/me', { locale: 'tr_TR', fields: 'email,picture.width(200).height(200)' },
           function(response) {
             alert(response.email);
             alert(response.picture);
