@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="853574560806-7825i7l9unu8rpn1k1ae62rb79m4pret.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        alert("ID: " + profile.getId()); // Don't send this directly to your server!
+        alert('Full Name: ' + profile.getName());
+        alert('Given Name: ' + profile.getGivenName());
+        alert('Family Name: ' + profile.getFamilyName());
+        alert("Image URL: " + profile.getImageUrl());
+        alert("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        alert("ID Token: " + id_token);
+      };
+    </script>
+  </body>
+</html>

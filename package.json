@@ -1,0 +1,17 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "testing App",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Crazydreamer",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "engines": {
+    "node": "10.0.0"
+  }
+}
