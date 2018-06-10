@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CQLogin</title>
+    <link rel="icon" href="app_pics/logo/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="main/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+    <link href="main/css/login.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        .logindiv {
+            height: 50%;
+            width: 100%;
+        }
+    </style>
+<body style="background-color: #0C1021">
+<div style="width:100%;background-color:#fff;position:fixed;height:40px;z-index:100;"></div>
+<br>
+
+    <div class="container" style="margin-top:100px">
+        <center>
+        <div class="alert alert-info alert-dismissible fade in" style="width:50%">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%=data%>
+        </div>
+        </center>
+
+            <center>
+                <div class="col-md-6 unselectable StartAnimation two">
+                  <div style="background: rgba(0,0,0,0.4);margin-top: 10%;border: 1px solid white;">
+                    <h1 style="font-size: 30">Login</h1>
+                      <a href="/auth/facebook" class="fa fa-facebook"></a>
+                      <a href="/auth/google" class="fa fa-google"></a>
+                      <br>
+                      <br>
+                      <form action="/login" method="post">
+                        <input type="email" name="usermailLog" class="input" placeholder="Email" required="required" style="border-color: white" />
+                        <input type="password" name="userpassLog" class="input" placeholder="Password" required="required" style="border-color: white" />
+
+                        <center>
+                            <input type="submit" name="submit" class="inputbtn unselectable StartAnimation three" value="Go">
+                        </center>
+                      </form>
+                      <br>
+                      <br>
+                  </div>
+                </div>
+
+                <div class="col-md-6 unselectable StartAnimation three">
+                    <div style="background: rgba(0,0,0,0.4);margin-top: 10%;border: 1px solid white;">
+                      <h1 style="font-size: 30">Sign Up</h1>
+                        <a href="/auth/facebook" class="fa fa-facebook"></a>
+                        <a href="/auth/google" class="fa fa-google"></a>
+                        <br>
+                        <br>
+                        <form action="/signup" method="post">
+                          <input type="email" name="usermailSign" class="input" placeholder="Email" required="required" style="border-color: white" />
+                          <input type="password" name="userpassSign" class="input" placeholder="Password" required="required" style="border-color: white" />
+
+                          <center>
+                              <input type="submit" name="submit" class="inputbtn unselectable StartAnimation three" value="Go">
+                          </center>
+                        </form>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </center>
+        </div>
+     <footer class="unselectable StartAnimation one .MainFooter">
+            <center>
+                <h2 style="color: rgba(0,0,0,0.5);" class="StartAnimation three">CQ-Login © 2018</h2>
+            </center>
+    </footer>
+    </body>
+</html>
