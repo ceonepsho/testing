@@ -138,9 +138,15 @@ passport.use(new GoogleStrategy({
     }
     ));
 
-    app.get('/auth/google/callback',passport.authenticate('google',{successRedirect:'/social',failureRedirect: '/'}),
+    app.get('/auth/google/callback',passport.authenticate('google',{successRedirect:'ensureAuthenticated()',failureRedirect: '/'}),
     );
     app.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
+    
+    function ensureAuthenticated(req, res) {
+        //if (req.isAuthenticated()) { return next(); }
+          res.redirect('/profile');
+    }
+
 //------------------------------------------------------------------------------------------
 return passport;
 }

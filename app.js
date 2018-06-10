@@ -57,7 +57,7 @@ app.post('/login', function(req, res){
 									flag=true;
 									if(result[i].userpass==userpassword)
 									{
-                    req.session.user=useremail;
+                    					req.session.user=useremail;
 										pass=true;
 									}
 									else
@@ -134,7 +134,7 @@ app.get('/profile', function(req, res){
   }
 });
 
-app.get('/social',ensureAuthenticated, function(req, res){
+app.get('/social', function(req, res){
     res.sendFile(__dirname + '/public/social.html');
 });
 
@@ -149,19 +149,6 @@ app.get('/logout', function(req, res){
     res.redirect("/");
   }
 });
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated())
-  	{
-  		console.log("*****************************"+req.isAuthenticated());
-  	 return next(); 
-  	}
-  	else
-  	{
-  		console.log("*****************************"+req.isAuthenticated());
-  		 return next();
-  	}
-}
 
 app.get('*', function(req, res){
   var requrl=req.originalUrl;
