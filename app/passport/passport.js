@@ -32,6 +32,7 @@ module.exports = function(app,passport){
         },
         function(accessToken,refreshToken,profile,done)
         {
+          console.log(profile,"++++++++++++++++++++++++++++");
               var UniqueId;
               if(profile._json.email==null)
               {
@@ -80,8 +81,7 @@ module.exports = function(app,passport){
         }
         ));
 
-        app.get('/auth/facebook/callback',passport.authenticate('facebook',{successRedirect:'/social',failureRedirect: '/'}),
-        );
+        app.get('/auth/facebook/callback',passport.authenticate('facebook',{successRedirect:'/social',failureRedirect: '/'}));
         app.get('/auth/facebook',passport.authenticate('facebook',{scope: 'email'}));
 //-----------------------------------------------------------------------------------------
 passport.use(new GoogleStrategy({
@@ -91,6 +91,7 @@ passport.use(new GoogleStrategy({
     },
     function(accessToken,refreshToken,profile,done)
     {
+          console.log(profile,"++++++++++++++++++++++++++++");
           var UniqueId;
           if(profile.emails[0].value==null || profile.emails[0].value==undefined)
           {
@@ -138,8 +139,7 @@ passport.use(new GoogleStrategy({
     }
     ));
 
-    app.get('/auth/google/callback',passport.authenticate('google',{successRedirect:'ensureAuthenticated()',failureRedirect: '/'}),
-    );
+    app.get('/auth/google/callback',passport.authenticate('google',{successRedirect:'ensureAuthenticated()',failureRedirect: '/'}));
     app.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
     
     function ensureAuthenticated(req, res) {
