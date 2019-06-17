@@ -139,8 +139,8 @@ passport.use(new GoogleStrategy({
     }
     ));
 
-    app.get('/auth/google/callback',passport.authenticate('google',{successRedirect:'ensureAuthenticated()',failureRedirect: '/'}));
-    app.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}));
+    app.get('/auth/google/callback',passport.authenticate('google',{successRedirect:'/social',failureRedirect: '/'}));
+    app.get('/auth/google',passport.authenticate('google',{hd:"eckovation.com",scope:['profile','email']}));
     
     function ensureAuthenticated(req, res) {
         //if (req.isAuthenticated()) { return next(); }
