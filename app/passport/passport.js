@@ -92,6 +92,7 @@ passport.use(new GoogleStrategy({
     function(accessToken,refreshToken,profile,done)
     {
           console.log(profile,"++++++++++++++++++++++++++++");
+	  console.log(profile._json,"================================");
           var UniqueId;
           if(profile.emails[0].value==null || profile.emails[0].value==undefined)
           {
